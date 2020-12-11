@@ -27,6 +27,12 @@ export const Labyrinth = () => {
     dispatch(game.actions.restartGame());
   };
 
+  // When using the Go back button we use dispatch for calling our reducer positionHistoryGoBack
+
+  const handleGoBack = () => {
+    dispatch(game.actions.positionHistoryGoBack());
+  };
+
   if (isLoading) {
     return <Loading />;
   } else {
@@ -34,6 +40,7 @@ export const Labyrinth = () => {
       <LabyrinthWrapper>
         <Map />
         <TextWrapper>
+          <Button onButtonClick={handleGoBack} text="Go Back" />
           <TopSection>
             {pastActions.length > 0 && (
               <PositionText>
@@ -100,7 +107,6 @@ export const LabyrinthWrapper = styled.main`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-
   @media (min-width: 1024px) {
     flex-direction: row;
     justify-content: space-evenly;
@@ -114,7 +120,6 @@ const TopSection = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   @media (min-width: 768px) {
     width: 500px;
   }
@@ -133,7 +138,6 @@ const BottomSection = styled.section`
   margin: 2px 0;
   display: flex;
   flex-direction: column;
-
   @media (min-width: 768px) {
     flex-direction: row;
     justify-content: center;
@@ -147,7 +151,6 @@ const GameDescription = styled.article`
   margin-bottom: 6px;
   padding: 4px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
   @media (min-width: 768px) {
     width: 250px;
     margin: 0 4px;
@@ -173,7 +176,6 @@ const DirectionText = styled.p`
   margin: 2px 0;
   font-style: italic;
   width: 100%;
-
   @media (min-width: 768px) {
     padding: 4px 10px;
   }
